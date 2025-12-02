@@ -29,10 +29,10 @@ foreach ($lines as $line) {
         default:
             throw new Exception("No direction found");
     }
-    while ($dial >= 100)
-        $dial -= 100;
-    while ($dial < 0)
-        $dial += 100;
+    if ($dial >= 100 or $dial < 0) {
+        $dial = $dial % 100;
+    }
+
     if ($dial === 0)
         $password++;
     echo "in direction $direction by $amount to $dial\n";
